@@ -1,0 +1,642 @@
+/*
+Theme Name: EVI – Alltags- & Haushaltshilfe
+Theme URI: https://www.evi-hilfe.de
+Author: Ewa Milanowska
+Description: Schlichtes Ein-Seiten-Theme für die Alltags- und Haushaltshilfe EVI. Farben und Sprache folgen dem gedruckten Flyer.
+Version: 1.0
+License: GNU General Public License v2 or later
+Text Domain: evi-hilfe
+*/
+
+/* ---------------------------------------------------------------
+   Farben und Maße
+   Die Zielgruppe ist überwiegend älter: große Schrift, hoher
+   Kontrast, großzügige Klickflächen sind hier keine Deko.
+   --------------------------------------------------------------- */
+:root {
+	--navy-900: #14173f;
+	--navy-800: #1e2260;
+	--navy-700: #2a2f7a;
+	--coral:     #ee8b76;
+	--coral-700: #bf5439; /* dunkel genug für Text auf Hell */
+	--cream:     #fdf9f7;
+	--ink:       #1b1e3b;
+	--muted:     #545982;
+	--line:      #e6e1ec;
+
+	--wrap: 68rem;
+	--radius: 1rem;
+	--radius-lg: 1.75rem;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; scroll-padding-top: 6rem; }
+
+body {
+	margin: 0;
+	background: var(--cream);
+	color: var(--ink);
+	font-family: "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+	font-size: 1.125rem;
+	line-height: 1.7;
+	-webkit-font-smoothing: antialiased;
+}
+
+img { max-width: 100%; height: auto; display: block; }
+
+h1, h2, h3 {
+	line-height: 1.2;
+	letter-spacing: -0.01em;
+	margin: 0 0 0.6em;
+	text-wrap: balance;
+}
+
+h1 { font-size: clamp(2.25rem, 6vw, 3.5rem); }
+h2 { font-size: clamp(1.75rem, 4vw, 2.5rem); }
+h3 { font-size: 1.25rem; }
+
+p { margin: 0 0 1.2em; }
+
+a { color: var(--coral-700); }
+
+.wrap {
+	width: min(var(--wrap), 100% - 2.5rem);
+	margin-inline: auto;
+}
+
+.icon { width: 1.25em; height: 1.25em; flex: none; }
+
+.skip-link {
+	position: absolute;
+	left: -9999px;
+}
+.skip-link:focus {
+	left: 1rem; top: 1rem;
+	z-index: 100;
+	background: #fff;
+	padding: 0.75rem 1.25rem;
+	border-radius: 0.5rem;
+}
+
+:focus-visible {
+	outline: 3px solid var(--coral-700);
+	outline-offset: 3px;
+}
+
+/* --------------------------------- Logo --------------------------------- */
+.brand {
+	display: inline-grid;
+	justify-items: center;
+	gap: 0.4rem;
+	line-height: 1;
+	text-decoration: none;
+}
+.brand-mark {
+	width: auto;
+	height: 3.4rem;
+}
+.brand-tagline {
+	font-size: 0.6rem;
+	letter-spacing: 0.22em;
+	text-transform: uppercase;
+	color: var(--muted);
+	white-space: nowrap;
+}
+
+/* Im Header nebeneinander, damit die Kopfzeile flach bleibt. */
+.site-header .brand {
+	grid-auto-flow: column;
+	align-items: center;
+	gap: 0.85rem;
+}
+.site-header .brand-mark { height: 3rem; }
+.site-header .brand-tagline {
+	white-space: normal;
+	max-width: 7.5rem;
+	text-align: left;
+	line-height: 1.6;
+}
+
+/*
+ * Im Footer steht die Marke auf hellem Grund – wie auf der Rückseite des
+ * Flyers. Freigestellt auf Dunkelblau würde das schwarze „EVI" verschwinden.
+ */
+.brand--invert {
+	background: var(--cream);
+	border-radius: var(--radius);
+	padding: 1rem 1.5rem;
+}
+
+.logo { text-decoration: none; }
+
+/* -------------------------------- Header -------------------------------- */
+.site-header {
+	position: sticky;
+	top: 0;
+	z-index: 50;
+	background: rgba(253, 249, 247, 0.92);
+	backdrop-filter: blur(8px);
+	border-bottom: 1px solid var(--line);
+}
+.header-inner {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 1.5rem;
+	padding: 0.9rem 0;
+	flex-wrap: wrap;
+}
+.site-nav {
+	display: flex;
+	align-items: center;
+	gap: 1.75rem;
+	font-weight: 600;
+}
+.site-nav a {
+	color: var(--navy-800);
+	text-decoration: none;
+	padding: 0.35rem 0;
+	border-bottom: 2px solid transparent;
+}
+.site-nav a:hover { border-bottom-color: var(--coral); }
+
+.nav-cta {
+	display: inline-flex;
+	align-items: center;
+	gap: 0.5rem;
+	background: var(--navy-800);
+	color: #fff !important;
+	padding: 0.7rem 1.25rem !important;
+	border-radius: 999px;
+	border-bottom: 0 !important;
+	white-space: nowrap;
+}
+.nav-cta:hover { background: var(--navy-700); }
+
+/* --------------------------------- Hero --------------------------------- */
+.hero {
+	position: relative;
+	overflow: hidden;
+	background:
+		radial-gradient(38rem 30rem at 88% -12%, rgba(238, 139, 118, 0.18), transparent 65%),
+		radial-gradient(34rem 28rem at 4% 108%, rgba(42, 47, 122, 0.12), transparent 60%),
+		var(--cream);
+	padding: clamp(3rem, 8vw, 6rem) 0;
+}
+.hero-inner {
+	display: grid;
+	grid-template-columns: 1.15fr 1fr;
+	gap: clamp(2rem, 5vw, 4rem);
+	align-items: center;
+}
+.eyebrow {
+	font-size: 0.8rem;
+	font-weight: 700;
+	letter-spacing: 0.2em;
+	text-transform: uppercase;
+	color: var(--coral-700);
+	margin-bottom: 1rem;
+}
+.hero h1 { color: var(--navy-800); }
+.lead { font-size: 1.3rem; color: var(--muted); max-width: 34ch; }
+.lead strong { color: var(--ink); }
+
+.hero-pill {
+	display: inline-flex;
+	align-items: flex-start;
+	gap: 0.6rem;
+	margin: 1.5rem 0 0;
+	padding: 0.7rem 1.25rem;
+	border-radius: 999px;
+	background: rgba(238, 139, 118, 0.18);
+	color: var(--coral-700);
+	font-weight: 700;
+	font-size: 1rem;
+}
+
+.hero-badges {
+	list-style: none;
+	margin: 1.75rem 0;
+	padding: 0;
+	display: grid;
+	gap: 0.6rem;
+	font-size: 1rem;
+}
+.hero-badges li {
+	display: flex;
+	align-items: center;
+	gap: 0.6rem;
+	font-weight: 600;
+	color: var(--navy-800);
+}
+.hero-badges .icon { color: var(--coral-700); }
+
+.hero-actions { display: flex; flex-wrap: wrap; gap: 0.85rem; }
+
+.btn {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	gap: 0.6rem;
+	padding: 1rem 1.75rem;
+	border-radius: 999px;
+	font-size: 1.15rem;
+	font-weight: 700;
+	text-decoration: none;
+	transition: transform 0.15s ease, background 0.15s ease;
+}
+.btn:hover { transform: translateY(-2px); }
+.btn--primary { background: var(--navy-800); color: #fff; }
+.btn--primary:hover { background: var(--navy-700); }
+.btn--ghost {
+	background: transparent;
+	color: var(--navy-800);
+	border: 2px solid var(--navy-800);
+}
+.btn--ghost:hover { background: var(--navy-800); color: #fff; }
+
+.hero-figure { margin: 0; }
+.hero-figure img,
+.photo-placeholder {
+	/* Weiche Blattform wie auf dem Flyer. */
+	border-radius: 14rem 14rem 14rem 2rem;
+	aspect-ratio: 4 / 5;
+	object-fit: cover;
+	width: 100%;
+}
+.photo-placeholder {
+	display: grid;
+	place-items: center;
+	padding: 2rem;
+	text-align: center;
+	background: linear-gradient(160deg, var(--navy-700), var(--navy-900));
+	color: rgba(255, 255, 255, 0.75);
+	font-size: 0.95rem;
+}
+
+/* ------------------------------- Sektionen ------------------------------- */
+.section { padding: clamp(3.5rem, 9vw, 6rem) 0; }
+.section--light { background: #fff; }
+.section--cream { background: var(--cream); }
+.section--light h2, .section--cream h2 { color: var(--navy-800); }
+.section-intro { color: var(--muted); font-size: 1.15rem; margin-bottom: 2.5rem; max-width: 52ch; }
+.section-intro--light { color: rgba(255, 255, 255, 0.8); }
+
+/* Ablauf in drei Schritten */
+.steps {
+	list-style: none;
+	counter-reset: step;
+	margin: 0;
+	padding: 0;
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+	gap: 1.5rem;
+}
+.steps li {
+	position: relative;
+	padding: 2.25rem 1.75rem 1.75rem;
+	background: var(--cream);
+	border: 1px solid var(--line);
+	border-radius: var(--radius-lg);
+}
+.step-no {
+	position: absolute;
+	top: -1.1rem;
+	left: 1.75rem;
+	display: grid;
+	place-items: center;
+	width: 2.75rem;
+	height: 2.75rem;
+	border-radius: 50%;
+	background: var(--navy-800);
+	color: #fff;
+	font-size: 1.2rem;
+	font-weight: 700;
+}
+.steps h3 { color: var(--navy-800); margin-top: 0.5rem; }
+.steps p { color: var(--muted); font-size: 1rem; margin: 0; }
+
+/* Zielgruppen-Karten */
+.cards {
+	list-style: none;
+	margin: 0 0 2.5rem;
+	padding: 0;
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+	gap: 1.25rem;
+}
+.card {
+	background: var(--cream);
+	border: 1px solid var(--line);
+	border-radius: var(--radius-lg);
+	padding: 1.75rem;
+}
+.card h3 { color: var(--navy-800); }
+.card p { color: var(--muted); font-size: 1rem; margin: 0; }
+.card-icon {
+	display: grid;
+	place-items: center;
+	width: 3rem;
+	height: 3rem;
+	margin-bottom: 1rem;
+	border-radius: 50%;
+	background: rgba(238, 139, 118, 0.18);
+	color: var(--coral-700);
+}
+.card-icon .icon { width: 1.5rem; height: 1.5rem; }
+
+.highlight {
+	display: flex;
+	align-items: flex-start;
+	gap: 0.85rem;
+	background: rgba(238, 139, 118, 0.14);
+	border-left: 5px solid var(--coral);
+	border-radius: 0 var(--radius) var(--radius) 0;
+	padding: 1.25rem 1.5rem;
+	margin: 0;
+	font-size: 1.15rem;
+}
+.highlight .icon { color: var(--coral-700); margin-top: 0.3em; }
+.highlight span { display: block; }
+
+/* Leistungen auf dunklem Grund */
+.section--dark {
+	background:
+		radial-gradient(30rem 24rem at 92% 8%, rgba(238, 139, 118, 0.22), transparent 62%),
+		linear-gradient(155deg, var(--navy-700), var(--navy-900));
+	color: #fff;
+}
+.section--dark h2 { color: var(--coral); }
+
+.checklist {
+	list-style: none;
+	margin: 0 0 2.5rem;
+	padding: 0;
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
+	gap: 1rem 2.5rem;
+}
+.checklist li {
+	display: flex;
+	align-items: flex-start;
+	gap: 0.85rem;
+	padding: 0.85rem 0;
+	border-bottom: 1px solid rgba(255, 255, 255, 0.14);
+}
+.checklist .icon { color: var(--coral); margin-top: 0.25em; }
+
+.claim {
+	font-size: clamp(1.4rem, 3.5vw, 2rem);
+	font-weight: 700;
+	color: var(--coral);
+	text-align: center;
+	margin: 0;
+}
+
+/* Über mich */
+.about {
+	display: grid;
+	grid-template-columns: 1.4fr 1fr;
+	gap: clamp(2rem, 5vw, 3.5rem);
+	align-items: start;
+}
+.about-text p { color: var(--muted); }
+.about blockquote {
+	margin: 2rem 0 0;
+	padding-left: 1.5rem;
+	border-left: 4px solid var(--coral);
+	font-size: 1.35rem;
+	font-style: italic;
+	color: var(--navy-800);
+}
+.about-box {
+	background: var(--cream);
+	border: 1px solid var(--line);
+	border-radius: var(--radius-lg);
+	padding: 2rem;
+}
+.about-box { background: #fff; }
+.about-box h3 { color: var(--coral-700); }
+.about-box p:last-child { margin-bottom: 0; }
+.about-signature { font-weight: 700; color: var(--navy-800); }
+
+/* Kontakt */
+.section--contact {
+	background: var(--cream);
+	text-align: center;
+}
+.section--contact h2 { color: var(--navy-800); }
+.contact-cards {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(17rem, 1fr));
+	gap: 1.25rem;
+	margin-bottom: 2rem;
+}
+.contact-card {
+	display: grid;
+	justify-items: center;
+	gap: 0.25rem;
+	background: #fff;
+	border: 1px solid var(--line);
+	border-radius: var(--radius-lg);
+	padding: 2rem 1.5rem;
+	text-decoration: none;
+	color: var(--ink);
+	transition: transform 0.15s ease, border-color 0.15s ease;
+}
+.contact-card:hover { transform: translateY(-3px); border-color: var(--coral); }
+.contact-icon {
+	display: grid;
+	place-items: center;
+	width: 3.25rem;
+	height: 3.25rem;
+	margin-bottom: 0.5rem;
+	border-radius: 50%;
+	background: var(--navy-800);
+	color: #fff;
+}
+.contact-label {
+	font-size: 0.8rem;
+	letter-spacing: 0.16em;
+	text-transform: uppercase;
+	color: var(--muted);
+}
+.contact-value { font-size: 1.2rem; font-weight: 700; color: var(--navy-800); word-break: break-word; }
+.contact-name { font-size: 1.15rem; color: var(--muted); margin: 2rem 0 0; }
+
+/* Kontaktformular */
+.oder-trenner {
+	display: flex;
+	align-items: center;
+	gap: 1rem;
+	margin: 2.5rem 0;
+	color: var(--muted);
+}
+.oder-trenner::before, .oder-trenner::after {
+	content: "";
+	flex: 1;
+	height: 1px;
+	background: var(--line);
+}
+
+.kontaktformular {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+	gap: 1.25rem;
+	text-align: left;
+	background: #fff;
+	border: 1px solid var(--line);
+	border-radius: var(--radius-lg);
+	padding: clamp(1.5rem, 4vw, 2.5rem);
+}
+.feld { margin: 0; display: grid; gap: 0.4rem; }
+.feld--breit { grid-column: 1 / -1; }
+.feld label { font-weight: 600; color: var(--navy-800); }
+.feld .optional { font-weight: 400; color: var(--muted); }
+
+.kontaktformular input[type="text"],
+.kontaktformular input[type="email"],
+.kontaktformular input[type="tel"],
+.kontaktformular textarea {
+	width: 100%;
+	padding: 0.85rem 1rem;
+	border: 2px solid var(--line);
+	border-radius: 0.6rem;
+	background: var(--cream);
+	font: inherit;
+	color: var(--ink);
+}
+.kontaktformular input:focus, .kontaktformular textarea:focus { border-color: var(--coral); }
+.kontaktformular textarea { resize: vertical; }
+
+.einwilligung label {
+	display: flex;
+	align-items: flex-start;
+	gap: 0.75rem;
+	font-weight: 400;
+	color: var(--muted);
+	font-size: 1rem;
+}
+.einwilligung input { width: 1.4rem; height: 1.4rem; margin-top: 0.15rem; flex: none; accent-color: var(--navy-800); }
+
+.pflichtfeld-hinweis { font-size: 0.9rem; color: var(--muted); }
+
+/* Für Menschen unsichtbar, aber nicht per display:none – manche Bots prüfen das. */
+.honeypot {
+	position: absolute;
+	left: -9999px;
+	width: 1px;
+	height: 1px;
+	overflow: hidden;
+}
+
+.form-notice {
+	text-align: left;
+	padding: 1.1rem 1.4rem;
+	border-radius: var(--radius);
+	border-left: 5px solid;
+	font-weight: 600;
+}
+.form-notice--erfolg { background: #e8f5ec; border-color: #2e7d4f; color: #1b5233; }
+.form-notice--fehler { background: #fdecea; border-color: #c0392b; color: #8c2318; }
+
+/* Textseiten (Impressum, Datenschutz) */
+.prose { max-width: 45rem; }
+.prose h1 { color: var(--navy-800); font-size: clamp(2rem, 5vw, 2.75rem); }
+.prose h2 {
+	font-size: 1.5rem;
+	margin-top: 3rem;
+	padding-top: 1.5rem;
+	border-top: 2px solid var(--line);
+	color: var(--navy-800);
+}
+.prose h3 { font-size: 1.1rem; margin-top: 2rem; color: var(--coral-700); }
+.prose ul { padding-left: 1.25rem; }
+.prose li { margin-bottom: 0.6rem; }
+
+/*
+ * Art. 21 Abs. 4 DSGVO verlangt, dass der Hinweis auf das Widerspruchsrecht
+ * „in einer verständlichen und von anderen Informationen getrennten Form"
+ * erscheint. Statt der üblichen Großbuchstaben – die sich schlecht lesen
+ * lassen, gerade für ältere Menschen – hebt ein eigener Kasten den Absatz ab.
+ */
+.prose .hervorgehoben {
+	background: rgba(238, 139, 118, 0.12);
+	border-left: 5px solid var(--coral);
+	border-radius: 0 var(--radius) var(--radius) 0;
+	padding: 1.25rem 1.5rem;
+}
+
+/* -------------------------------- Footer -------------------------------- */
+.site-footer {
+	background: var(--navy-900);
+	color: rgba(255, 255, 255, 0.85);
+	padding: clamp(2.5rem, 6vw, 4rem) 0 1.5rem;
+}
+.footer-inner {
+	display: grid;
+	grid-template-columns: 1.3fr 1fr auto;
+	gap: 2.5rem;
+	align-items: start;
+	padding-bottom: 2rem;
+	border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+}
+.footer-claim {
+	margin: 1.25rem 0 0;
+	font-style: italic;
+	color: rgba(255, 255, 255, 0.7);
+	max-width: 26ch;
+}
+.footer-name { font-weight: 700; color: #fff; margin-bottom: 0.4em; }
+.site-footer a { color: var(--coral); }
+.footer-legal { display: grid; gap: 0.6rem; }
+.footer-copy {
+	text-align: center;
+	font-size: 0.9rem;
+	color: rgba(255, 255, 255, 0.55);
+	margin: 1.5rem 0 0;
+}
+
+/* Fester Anruf-Knopf auf dem Handy */
+.mobile-call {
+	display: none;
+	position: fixed;
+	left: 1rem;
+	right: 1rem;
+	bottom: 1rem;
+	z-index: 60;
+	align-items: center;
+	justify-content: center;
+	gap: 0.6rem;
+	background: var(--coral-700);
+	color: #fff;
+	font-size: 1.15rem;
+	font-weight: 700;
+	text-decoration: none;
+	padding: 1rem;
+	border-radius: 999px;
+	box-shadow: 0 0.5rem 1.5rem rgba(20, 23, 63, 0.35);
+}
+
+/* ------------------------------- Responsive ------------------------------ */
+@media (max-width: 60rem) {
+	.hero-inner, .about, .footer-inner { grid-template-columns: 1fr; }
+	.hero-figure { order: -1; max-width: 22rem; }
+	.lead { max-width: none; }
+}
+
+@media (max-width: 46rem) {
+	body { font-size: 1.0625rem; }
+	.site-nav { gap: 1rem; font-size: 0.95rem; }
+	.site-nav a:not(.nav-cta) { display: none; }
+	.mobile-call { display: flex; }
+	.site-footer { padding-bottom: 6rem; } /* Platz für den Anruf-Knopf */
+	.btn { width: 100%; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+	html { scroll-behavior: auto; }
+	* { transition: none !important; }
+	.btn:hover, .contact-card:hover { transform: none; }
+}

@@ -1,0 +1,65 @@
+services:
+  db:
+    image: mariadb:10.11
+    environment:
+      MARIADB_DATABASE: wordpress
+      MARIADB_USER: wordpress
+      MARIADB_PASSWORD: wordpress
+      MARIADB_ROOT_PASSWORD: root
+    volumes:
+      - db_data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "healthcheck.sh", "--connect", "--innodb_initialized"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+
+  wordpress:
+    image: wordpress:6-php8.2-apache
+    depends_on:
+      db:
+        condition: service_healthy
+    ports:
+      - "8080:80"
+    environment:
+      WORDPRESS_DB_HOST: db:3306
+      WORDPRESS_DB_NAME: wordpress
+      WORDPRESS_DB_USER: wordpress
+      WORDPRESS_DB_PASSWORD: wordpress
+      WORDPRESS_DEBUG: 1
+      WORDPRESS_CONFIG_EXTRA: |
+        define('WP_DEBUG_LOG', true);
+        define('WP_DEBUG_DISPLAY', false);
+        // Nur lokal: E-Mails landen in Mailpit statt im echten Postfach.
+        define('EVI_SMTP_HOST', 'mailpit');
+        define('EVI_SMTP_PORT', 1025);
+    volumes:
+      - wp_data:/var/www/html
+      - ./themes/evi-hilfe:/var/www/html/wp-content/themes/evi-hilfe
+      - ./uploads:/var/www/html/wp-content/uploads
+
+  # Fängt lokal alle E-Mails ab – Weboberfläche auf http://localhost:8025
+  mailpit:
+    image: axllent/mailpit:latest
+    ports:
+      - "8025:8025"
+
+  wpcli:
+    image: wordpress:cli-php8.2
+    depends_on:
+      - wordpress
+    user: "33:33"
+    environment:
+      WORDPRESS_DB_HOST: db:3306
+      WORDPRESS_DB_NAME: wordpress
+      WORDPRESS_DB_USER: wordpress
+      WORDPRESS_DB_PASSWORD: wordpress
+    volumes:
+      - wp_data:/var/www/html
+      - ./themes/evi-hilfe:/var/www/html/wp-content/themes/evi-hilfe
+      - ./uploads:/var/www/html/wp-content/uploads
+    entrypoint: ["tail", "-f", "/dev/null"]
+
+volumes:
+  db_data:
+  wp_data:
