@@ -13,6 +13,6 @@ $invert = ! empty( $args['invert'] );
 	<img class="brand-mark"
 		src="<?php echo esc_url( get_template_directory_uri() . '/img/evi-logo.png' ); ?>"
 		alt="EVI"
-		width="640" height="502">
+		width="241" height="203">
 	<span class="brand-tagline">Alltags- &amp; Haushaltshilfe</span>
 </span>

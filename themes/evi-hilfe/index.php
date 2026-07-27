@@ -31,14 +31,13 @@
 		</div>
 
 		<figure class="hero-figure">
-			<?php
-			// Foto über „Beitragsbild" der Startseite austauschbar.
-			if ( has_post_thumbnail() ) {
-				the_post_thumbnail( 'large' );
-			} else {
-				echo '<div class="photo-placeholder"><span>Hier kommt ein Foto von Ewa hin</span></div>';
-			}
-			?>
+			<?php $img = get_template_directory_uri() . '/img'; ?>
+			<img src="<?php echo esc_url( $img . '/ewa.jpg' ); ?>"
+				srcset="<?php echo esc_attr( $img . '/ewa-600.jpg 600w, ' . $img . '/ewa.jpg 1200w' ); ?>"
+				sizes="(max-width: 60rem) 90vw, 40vw"
+				width="1200" height="1500"
+				alt="<?php echo esc_attr( EVI_NAME ); ?>, Alltags- und Haushaltshilfe"
+				fetchpriority="high">
 		</figure>
 	</div>
 </section>

@@ -17,8 +17,8 @@ Text Domain: evi-hilfe
 	--navy-900: #14173f;
 	--navy-800: #1e2260;
 	--navy-700: #2a2f7a;
-	--coral:     #ee8b76;
-	--coral-700: #bf5439; /* dunkel genug für Text auf Hell */
+	--rose:     #ff8aa4;
+	--rose-700: #b62b4a; /* Markenrosa aus dem Logo; die dunkle Variante für Text auf Hell */
 	--cream:     #fdf9f7;
 	--ink:       #1b1e3b;
 	--muted:     #545982;
@@ -58,7 +58,7 @@ h3 { font-size: 1.25rem; }
 
 p { margin: 0 0 1.2em; }
 
-a { color: var(--coral-700); }
+a { color: var(--rose-700); }
 
 .wrap {
 	width: min(var(--wrap), 100% - 2.5rem);
@@ -80,7 +80,7 @@ a { color: var(--coral-700); }
 }
 
 :focus-visible {
-	outline: 3px solid var(--coral-700);
+	outline: 3px solid var(--rose-700);
 	outline-offset: 3px;
 }
 
@@ -159,7 +159,7 @@ a { color: var(--coral-700); }
 	padding: 0.35rem 0;
 	border-bottom: 2px solid transparent;
 }
-.site-nav a:hover { border-bottom-color: var(--coral); }
+.site-nav a:hover { border-bottom-color: var(--rose); }
 
 .nav-cta {
 	display: inline-flex;
@@ -179,7 +179,7 @@ a { color: var(--coral-700); }
 	position: relative;
 	overflow: hidden;
 	background:
-		radial-gradient(38rem 30rem at 88% -12%, rgba(238, 139, 118, 0.18), transparent 65%),
+		radial-gradient(38rem 30rem at 88% -12%, rgba(255, 138, 164, 0.18), transparent 65%),
 		radial-gradient(34rem 28rem at 4% 108%, rgba(42, 47, 122, 0.12), transparent 60%),
 		var(--cream);
 	padding: clamp(3rem, 8vw, 6rem) 0;
@@ -195,7 +195,7 @@ a { color: var(--coral-700); }
 	font-weight: 700;
 	letter-spacing: 0.2em;
 	text-transform: uppercase;
-	color: var(--coral-700);
+	color: var(--rose-700);
 	margin-bottom: 1rem;
 }
 .hero h1 { color: var(--navy-800); }
@@ -209,8 +209,8 @@ a { color: var(--coral-700); }
 	margin: 1.5rem 0 0;
 	padding: 0.7rem 1.25rem;
 	border-radius: 999px;
-	background: rgba(238, 139, 118, 0.18);
-	color: var(--coral-700);
+	background: rgba(255, 138, 164, 0.18);
+	color: var(--rose-700);
 	font-weight: 700;
 	font-size: 1rem;
 }
@@ -230,7 +230,7 @@ a { color: var(--coral-700); }
 	font-weight: 600;
 	color: var(--navy-800);
 }
-.hero-badges .icon { color: var(--coral-700); }
+.hero-badges .icon { color: var(--rose-700); }
 
 .hero-actions { display: flex; flex-wrap: wrap; gap: 0.85rem; }
 
@@ -341,8 +341,8 @@ a { color: var(--coral-700); }
 	height: 3rem;
 	margin-bottom: 1rem;
 	border-radius: 50%;
-	background: rgba(238, 139, 118, 0.18);
-	color: var(--coral-700);
+	background: rgba(255, 138, 164, 0.18);
+	color: var(--rose-700);
 }
 .card-icon .icon { width: 1.5rem; height: 1.5rem; }
 
@@ -350,24 +350,24 @@ a { color: var(--coral-700); }
 	display: flex;
 	align-items: flex-start;
 	gap: 0.85rem;
-	background: rgba(238, 139, 118, 0.14);
-	border-left: 5px solid var(--coral);
+	background: rgba(255, 138, 164, 0.14);
+	border-left: 5px solid var(--rose);
 	border-radius: 0 var(--radius) var(--radius) 0;
 	padding: 1.25rem 1.5rem;
 	margin: 0;
 	font-size: 1.15rem;
 }
-.highlight .icon { color: var(--coral-700); margin-top: 0.3em; }
+.highlight .icon { color: var(--rose-700); margin-top: 0.3em; }
 .highlight span { display: block; }
 
 /* Leistungen auf dunklem Grund */
 .section--dark {
 	background:
-		radial-gradient(30rem 24rem at 92% 8%, rgba(238, 139, 118, 0.22), transparent 62%),
+		radial-gradient(30rem 24rem at 92% 8%, rgba(255, 138, 164, 0.22), transparent 62%),
 		linear-gradient(155deg, var(--navy-700), var(--navy-900));
 	color: #fff;
 }
-.section--dark h2 { color: var(--coral); }
+.section--dark h2 { color: var(--rose); }
 
 .checklist {
 	list-style: none;
@@ -384,12 +384,12 @@ a { color: var(--coral-700); }
 	padding: 0.85rem 0;
 	border-bottom: 1px solid rgba(255, 255, 255, 0.14);
 }
-.checklist .icon { color: var(--coral); margin-top: 0.25em; }
+.checklist .icon { color: var(--rose); margin-top: 0.25em; }
 
 .claim {
 	font-size: clamp(1.4rem, 3.5vw, 2rem);
 	font-weight: 700;
-	color: var(--coral);
+	color: var(--rose);
 	text-align: center;
 	margin: 0;
 }
@@ -405,7 +405,7 @@ a { color: var(--coral-700); }
 .about blockquote {
 	margin: 2rem 0 0;
 	padding-left: 1.5rem;
-	border-left: 4px solid var(--coral);
+	border-left: 4px solid var(--rose);
 	font-size: 1.35rem;
 	font-style: italic;
 	color: var(--navy-800);
@@ -417,7 +417,7 @@ a { color: var(--coral-700); }
 	padding: 2rem;
 }
 .about-box { background: #fff; }
-.about-box h3 { color: var(--coral-700); }
+.about-box h3 { color: var(--rose-700); }
 .about-box p:last-child { margin-bottom: 0; }
 .about-signature { font-weight: 700; color: var(--navy-800); }
 
@@ -445,7 +445,7 @@ a { color: var(--coral-700); }
 	color: var(--ink);
 	transition: transform 0.15s ease, border-color 0.15s ease;
 }
-.contact-card:hover { transform: translateY(-3px); border-color: var(--coral); }
+.contact-card:hover { transform: translateY(-3px); border-color: var(--rose); }
 .contact-icon {
 	display: grid;
 	place-items: center;
@@ -507,7 +507,7 @@ a { color: var(--coral-700); }
 	font: inherit;
 	color: var(--ink);
 }
-.kontaktformular input:focus, .kontaktformular textarea:focus { border-color: var(--coral); }
+.kontaktformular input:focus, .kontaktformular textarea:focus { border-color: var(--rose); }
 .kontaktformular textarea { resize: vertical; }
 
 .einwilligung label {
@@ -551,7 +551,7 @@ a { color: var(--coral-700); }
 	border-top: 2px solid var(--line);
 	color: var(--navy-800);
 }
-.prose h3 { font-size: 1.1rem; margin-top: 2rem; color: var(--coral-700); }
+.prose h3 { font-size: 1.1rem; margin-top: 2rem; color: var(--rose-700); }
 .prose ul { padding-left: 1.25rem; }
 .prose li { margin-bottom: 0.6rem; }
 
@@ -562,8 +562,8 @@ a { color: var(--coral-700); }
  * lassen, gerade für ältere Menschen – hebt ein eigener Kasten den Absatz ab.
  */
 .prose .hervorgehoben {
-	background: rgba(238, 139, 118, 0.12);
-	border-left: 5px solid var(--coral);
+	background: rgba(255, 138, 164, 0.12);
+	border-left: 5px solid var(--rose);
 	border-radius: 0 var(--radius) var(--radius) 0;
 	padding: 1.25rem 1.5rem;
 }
@@ -576,7 +576,7 @@ a { color: var(--coral-700); }
 }
 .footer-inner {
 	display: grid;
-	grid-template-columns: 1.3fr 1fr auto;
+	grid-template-columns: 1.3fr 1fr;
 	gap: 2.5rem;
 	align-items: start;
 	padding-bottom: 2rem;
@@ -589,13 +589,22 @@ a { color: var(--coral-700); }
 	max-width: 26ch;
 }
 .footer-name { font-weight: 700; color: #fff; margin-bottom: 0.4em; }
-.site-footer a { color: var(--coral); }
-.footer-legal { display: grid; gap: 0.6rem; }
+.site-footer a { color: var(--rose); }
+
+.footer-bottom {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	justify-content: space-between;
+	gap: 1rem 2rem;
+	margin-top: 1.5rem;
+}
+.footer-legal { display: flex; flex-wrap: wrap; gap: 1.75rem; }
+.footer-legal a { font-weight: 600; }
 .footer-copy {
-	text-align: center;
 	font-size: 0.9rem;
 	color: rgba(255, 255, 255, 0.55);
-	margin: 1.5rem 0 0;
+	margin: 0;
 }
 
 /* Fester Anruf-Knopf auf dem Handy */
@@ -609,7 +618,7 @@ a { color: var(--coral-700); }
 	align-items: center;
 	justify-content: center;
 	gap: 0.6rem;
-	background: var(--coral-700);
+	background: var(--rose-700);
 	color: #fff;
 	font-size: 1.15rem;
 	font-weight: 700;

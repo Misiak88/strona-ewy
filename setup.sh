@@ -1,7 +1,9 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-SITE_URL="http://localhost:8080"
+# Port aus docker-compose.yml lesen, damit beide nicht auseinanderlaufen.
+PORT="$(grep -oP '^\s+- "\K[0-9]+(?=:80")' docker-compose.yml | head -1)"
+SITE_URL="http://localhost:${PORT:-8080}"
 SITE_TITLE="Evi Hilfe"
 ADMIN_USER="admin"
 ADMIN_PASS="admin"
@@ -22,6 +24,14 @@ if ! wp core is-installed 2>/dev/null; then
     --admin_password="$ADMIN_PASS" \
     --admin_email="$ADMIN_EMAIL" \
     --skip-email
+fi
+
+# Adres strony poprawiamy tylko wtedy, gdy w bazie siedzi jakiś localhost.
+# Jeśli strona jest wystawiona publicznie (tunel, prawdziwa domena), nie ruszamy.
+AKTUALNY_URL="$(wp option get home 2>/dev/null || echo '')"
+if [[ "$AKTUALNY_URL" == *localhost* && "$AKTUALNY_URL" != "$SITE_URL" ]]; then
+  wp option update home "$SITE_URL"
+  wp option update siteurl "$SITE_URL"
 fi
 
 wp language core install de_DE --activate

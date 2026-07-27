@@ -15,9 +15,15 @@
 			</p>
 		</div>
 
+	</div>
+
+	<div class="wrap footer-bottom">
+		<p class="footer-copy">© <?php echo esc_html( date_i18n( 'Y' ) ); ?> EVI – Alltags- &amp; Haushaltshilfe</p>
+
 		<nav class="footer-legal" aria-label="Rechtliches">
 			<?php
-			// Die Seiten „Impressum" und „Datenschutz" sind in Deutschland Pflicht.
+			// Die Seiten „Impressum" und „Datenschutz" sind in Deutschland Pflicht
+			// und gehören dorthin, wo man sie sucht: in die unterste Zeile.
 			foreach ( array( 'impressum' => 'Impressum', 'datenschutz' => 'Datenschutz' ) as $slug => $label ) {
 				$page = get_page_by_path( $slug );
 				if ( $page ) {
@@ -27,8 +33,6 @@
 			?>
 		</nav>
 	</div>
-
-	<p class="footer-copy">© <?php echo esc_html( date_i18n( 'Y' ) ); ?> EVI – Alltags- &amp; Haushaltshilfe</p>
 </footer>
 
 <a class="mobile-call" href="tel:<?php echo esc_attr( EVI_PHONE_LINK ); ?>">
